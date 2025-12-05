@@ -151,7 +151,7 @@ export const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
           config
         );
 
-        console.log('✅ Pannellum ready, hotspots:', config.hotSpots.length);
+        console.log('Pannellum ready, hotspots:', config.hotSpots.length);
 
         // Restore fullscreen nếu trước đó đang bật
         setTimeout(() => {
