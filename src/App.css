@@ -1,0 +1,648 @@
+/* Global styles cho pannellum */
+#panorama-viewer-container .pnlm-container,
+.panorama-viewer-container .pnlm-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#panorama-viewer-container .pnlm-hotspot,
+.panorama-viewer-container .pnlm-hotspot {
+  z-index: 50;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background: radial-gradient(circle at top, #182a3a 0, #050810 45%, #02030a 100%);
+  color: #f5f7fb;
+}
+
+.museum-shell {
+  width: 100%;
+  max-width: 100%;
+  padding: 24px 20px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.museum-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.museum-title {
+  font-size: 28px;
+  margin: 0 0 6px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.museum-subtitle {
+  margin: 0;
+  max-width: 620px;
+  font-size: 14px;
+  color: #c1c7d6;
+}
+
+.museum-subtitle code {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0 4px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.museum-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  color: #c1c7d6;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: radial-gradient(circle, #4fd1c5 0, #0c7e75 60%);
+  box-shadow: 0 0 8px rgba(79, 209, 197, 0.8);
+}
+
+.legend-card {
+  width: 20px;
+  height: 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: linear-gradient(145deg, rgba(16, 185, 129, 0.36), transparent);
+}
+
+.museum-main {
+  display: block;
+  flex: 1;
+}
+
+.museum-panorama-panel {
+  position: relative;
+}
+
+.panorama-wrapper {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: #020617;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+  height: calc(100vh - 120px);
+  cursor: grab;
+}
+
+/* Container cho pannellum viewer */
+.panorama-viewer-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.panorama-viewer-container .pnlm-container {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+}
+
+.panorama-viewer-container .pnlm-render-container {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.panorama-viewer-container .pnlm-ui {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Layer overlay cho controls - đặt trên cùng */
+.panorama-controls-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.panorama-controls-overlay > * {
+  pointer-events: auto;
+}
+
+.panorama-wrapper:active {
+  cursor: grabbing;
+}
+
+.panorama-gradient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at top, rgba(15, 23, 42, 0.4), transparent 65%),
+    linear-gradient(
+      to bottom,
+      rgba(15, 23, 42, 0.8),
+      transparent 18%,
+      transparent 75%,
+      rgba(15, 23, 42, 0.9)
+    );
+  pointer-events: none;
+}
+
+.panorama-helper {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  z-index: 1001;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 4px 9px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  font-size: 11px;
+  color: #e5e7eb;
+  pointer-events: auto;
+}
+
+/* Nút điều khiển panorama - cố định vị trí */
+.panorama-control-btn {
+  position: absolute;
+  z-index: 1001;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  background: rgba(15, 23, 42, 0.92);
+  color: #e5e7eb;
+  font-size: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(12px);
+  transition: background 120ms ease, border-color 120ms ease, transform 80ms ease;
+}
+
+.panorama-control-btn:hover {
+  background: rgba(30, 64, 175, 0.96);
+  border-color: rgba(191, 219, 254, 0.9);
+}
+
+.panorama-control-btn:active {
+  transform: translateY(1px);
+}
+
+/* Nút Fullscreen - góc trên bên phải */
+.panorama-fullscreen-btn {
+  top: 14px;
+  right: 16px;
+}
+
+/* Nút điều hướng cảnh */
+.panorama-nav-btn {
+  bottom: 14px;
+}
+
+.panorama-prev-btn {
+  left: 16px;
+}
+
+.panorama-next-btn {
+  right: 16px;
+}
+
+.panorama-drag-icon {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.panorama-fade-in {
+  animation: panorama-fade 260ms ease-out;
+}
+
+.panorama-fullscreen-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4000;
+}
+
+.panorama-fullscreen-overlay > * {
+  pointer-events: auto;
+}
+
+.pano-hotspot {
+  cursor: pointer;
+}
+
+.pano-hotspot-label {
+  padding: 3px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  color: #e5e7eb;
+  white-space: nowrap;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.9);
+}
+
+.pano-hotspot--direction .pano-hotspot-label {
+  background: rgba(30, 64, 175, 0.96);
+  border-color: rgba(191, 219, 254, 0.9);
+}
+
+.pano-hotspot--artifact .pano-hotspot-label {
+  background: rgba(34, 197, 94, 0.94);
+  border-color: rgba(190, 242, 100, 0.9);
+  color: #052e16;
+}
+
+/* Pannellum custom hotspots - để mặc định, chỉ style tooltip một chút */
+.pnlm-hotspot {
+  cursor: pointer;
+}
+
+.pnlm-hotspot-direction .pnlm-tooltip {
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.8); /* nền đen cho text điều hướng */
+  border: 1px solid rgba(191, 219, 254, 0.9);
+  color: #e5e7eb;
+  white-space: nowrap;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.9);
+  margin-top: 6px;
+}
+
+.pnlm-hotspot-artifact .pnlm-tooltip {
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.85); /* nền đen cho text hiện vật */
+  border: 1px solid rgba(190, 242, 100, 0.9);
+  color: #f9fafb;
+  white-space: nowrap;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.9);
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+/* Đảm bảo hotspots hiển thị trong fullscreen */
+:fullscreen .pnlm-hotspot,
+:-webkit-full-screen .pnlm-hotspot,
+:-moz-full-screen .pnlm-hotspot,
+:-ms-fullscreen .pnlm-hotspot {
+  z-index: 1000 !important;
+}
+
+:fullscreen .panorama-controls-overlay,
+:-webkit-full-screen .panorama-controls-overlay,
+:-moz-full-screen .panorama-controls-overlay,
+:-ms-fullscreen .panorama-controls-overlay {
+  z-index: 2000 !important;
+}
+
+.pano-arrow {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(191, 219, 254, 0.9);
+  background: radial-gradient(circle at 30% 40%, #bfdbfe 0, #1d4ed8 55%, #020617 80%);
+  position: relative;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.9);
+}
+
+.pano-arrow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #eff6ff;
+  border-right: 2px solid #eff6ff;
+  transform: rotate(45deg) translate(-1px, 1px);
+}
+
+.pano-artifact-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: radial-gradient(circle, #22c55e 0, #15803d 65%, #052e16 100%);
+  border: 1px solid rgba(190, 242, 100, 0.9);
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.95);
+  position: relative;
+}
+
+.pano-artifact-dot::after {
+  content: '3D';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  font-size: 8px;
+  font-weight: 600;
+  color: #ecfdf5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.artifact-scene-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.nav-button {
+  flex: 1;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  background: rgba(15, 23, 42, 0.85);
+  color: #e5e7eb;
+  padding: 6px 10px;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: background 120ms ease, border-color 120ms ease, transform 80ms ease;
+}
+
+.nav-button:hover {
+  background: rgba(30, 64, 175, 0.9);
+  border-color: rgba(191, 219, 254, 0.8);
+}
+
+.nav-button:active {
+  transform: translateY(1px);
+}
+
+.museum-artifact-panel {
+  border-radius: 18px;
+  padding: 16px 16px 14px;
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(17, 24, 39, 0.98));
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
+  display: flex;
+  flex-direction: column;
+}
+
+.artifact-panel-title {
+  margin: 0 0 4px;
+  font-size: 16px;
+}
+
+.artifact-panel-subtitle {
+  margin: 0 0 14px;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.artifact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.artifact-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  padding: 8px 9px;
+  border-radius: 14px;
+  background: radial-gradient(circle at top left, rgba(55, 65, 81, 0.6), rgba(15, 23, 42, 0.9));
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  transition: transform 120ms ease, box-shadow 150ms ease, border-color 120ms ease,
+    background 120ms ease;
+}
+
+.artifact-card:hover {
+  transform: translateY(-1px);
+  border-color: rgba(248, 250, 252, 0.8);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.9);
+}
+
+.artifact-thumb-wrapper {
+  position: relative;
+  width: 90px;
+  height: 74px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #020617;
+}
+
+.artifact-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.artifact-3d-badge {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #22c55e, #a3e635);
+  color: #022c22;
+  font-weight: 600;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
+}
+
+.artifact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.artifact-name {
+  margin: 0;
+  font-size: 15px;
+}
+
+.artifact-year {
+  margin: 0;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.artifact-description {
+  margin: 0;
+  font-size: 12px;
+  color: #d1d5db;
+}
+
+.artifact-empty {
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.artifact-modal-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.98)) !important;
+  backdrop-filter: blur(14px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 2147483647 !important; /* Max z-index để luôn hiển thị trên fullscreen */
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+/* Đảm bảo modal hiển thị đúng khi render trong fullscreen element */
+:fullscreen .artifact-modal-backdrop,
+:-webkit-full-screen .artifact-modal-backdrop,
+:-moz-full-screen .artifact-modal-backdrop,
+:-ms-fullscreen .artifact-modal-backdrop {
+  position: fixed !important;
+  z-index: 2147483647 !important;
+}
+
+.artifact-modal {
+  width: min(960px, 100% - 40px);
+  max-height: min(620px, 100% - 40px);
+  border-radius: 20px;
+  background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.2), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.25), transparent 60%),
+    linear-gradient(145deg, #020617, #020617);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.9);
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.artifact-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.artifact-modal-title {
+  margin: 0 0 2px;
+  font-size: 18px;
+}
+
+.artifact-modal-meta {
+  margin: 0;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.artifact-modal-close {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: rgba(15, 23, 42, 0.95);
+  color: #e5e7eb;
+  cursor: pointer;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 120ms ease, transform 80ms ease, border-color 120ms ease;
+}
+
+.artifact-modal-close:hover {
+  background: rgba(30, 64, 175, 0.98);
+  border-color: rgba(191, 219, 254, 0.85);
+}
+
+.artifact-modal-close:active {
+  transform: translateY(1px);
+}
+
+.artifact-model-viewer-wrapper {
+  flex: 1;
+  min-height: 260px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 1));
+}
+
+.artifact-model-viewer-wrapper model-viewer {
+  width: 100%;
+  height: 100%;
+  --poster-color: transparent;
+}
+
+.artifact-modal-description {
+  margin: 0;
+  font-size: 13px;
+  color: #e5e7eb;
+}
+
+.artifact-modal-hint {
+  margin: 0;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+@keyframes panorama-fade {
+  from {
+    opacity: 0;
+    transform: scale(1.01);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 960px) {
+  .museum-main {
+    grid-template-columns: minmax(0, 1.2fr);
+  }
+
+  .museum-artifact-panel {
+    order: -1;
+  }
+
+  .museum-header {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .museum-shell {
+    padding-inline: 14px;
+  }
+
+  .artifact-modal {
+    width: 100%;
+    max-height: 100%;
+    border-radius: 0;
+  }
+}
