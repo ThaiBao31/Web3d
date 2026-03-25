@@ -62,7 +62,7 @@ const App: React.FC = () => {
 
       </header>
 
-        <main className="museum-main">
+        <main className="museum-mainNNNNNNN">
           <PanoramaViewer
             scene={currentScene}
             onGoToScene={handleChangeScene}
